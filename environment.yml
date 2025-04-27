@@ -1,0 +1,5 @@
+name: clingo-env
+channels:
+  - conda-forge
+dependencies:
+  - clingo
