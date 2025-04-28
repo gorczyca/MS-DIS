@@ -14,7 +14,6 @@ def main():
     args.add_argument('-i', dest='interactive', action='store_true')
     args = args.parse_args()
     
-    # Construct the path to the encoding files
     encoding_files = {
         'aba': 'encoding/aba.lp',
         'af': 'encoding/af.lp',

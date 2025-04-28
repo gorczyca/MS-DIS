@@ -19,7 +19,7 @@ pip install .
 ### Verify installation
 #### ABA: 
 ```
-msdis -p test-instances/aba-test-instance.lp -g q4 -f aba 
+python msdis.py -p test-instances/aba-test-instance.lp -g q4 -f aba 
 ```
 should return `False`, whereas:
 ```
