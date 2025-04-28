@@ -5,13 +5,6 @@ import msdis.control.acceptance as acc
 import msdis.control.approx as approx
 import msdis.control.interactive as inter
 
-
-FRAMEWORKS_DICT = {
-    'aba': files('msdis.encoding').joinpath('aba.lp'),
-    'af': files('msdis.encoding').joinpath('af.lp'),
-}
-
-
 def main():
     args = argparse.ArgumentParser()
     args.add_argument('-p', dest='problem', type=str, required=True)
@@ -20,8 +13,16 @@ def main():
     args.add_argument('-a', dest='approx', type=int)
     args.add_argument('-i', dest='interactive', action='store_true')
     args = args.parse_args()
-
-    encoding = str(FRAMEWORKS_DICT[args.framework])
+    
+    # Get the package root directory
+    package_root = files('msdis')
+    
+    # Construct the path to the encoding files
+    encoding_files = {
+        'aba': package_root / 'encoding' / 'aba.lp',
+        'af': package_root / 'encoding' / 'af.lp',
+    }
+    encoding = str(encoding_files[args.framework])
 
     if args.interactive:
         inter.run(args.problem, args.goal, encoding)
@@ -29,7 +30,7 @@ def main():
         approx.run(args.problem, args.goal, args.approx, encoding)
     else:
         print(acc.run(args.problem, args.goal, encoding))
-        
+            
 if __name__ == '__main__':
     main()
 

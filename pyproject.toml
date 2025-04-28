@@ -22,7 +22,8 @@ distribution = true
 
 [tool.pdm.package]
 include = [
-    { path = "src/msdis/encoding", format = "package" },
+    { path = "src/msdis/encoding", format = "sdist" },
+    { path = "src/msdis/encoding/*.lp", format = "sdist" },
 ]
 
 [project.scripts]
