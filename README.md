@@ -13,7 +13,7 @@
 git clone https://github.com/gorczyca/MS-DIS
 cd MS-DIS
 pip install .
-``
+```
 
 
 ### Verify installation
