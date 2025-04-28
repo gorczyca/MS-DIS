@@ -4,8 +4,8 @@ branchMT(pb1;pb2;pf2). % branching (br.) move types
 plr(p;o). % players; proponent (p) and opponent (o)
 rS(R,S) :- head(R,S). % rule's statements
 rS(R,S) :- body(R, S). % rule's statements
-end(0,o) :- g(S), contrary(S,S).
-stS(0,S,p) :- g(S). % proponent's initial statement 
+% end(0,o) :- g(S), contrary(S,S).
+stS(0,S,p) :- g(S), not contrary(S, S). % proponent's initial statement 
 remBloR(0,R,H,p) :- head(R,H), rS(R,S1), rS(R,S2), contrary(S1,S2). % blocked, inconsistent rules
 #program updateState(t).
 stS(t,S,P) :- stS(_,S,p), plr(P). % allow the opponent to access proponent statements

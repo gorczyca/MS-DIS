@@ -1,9 +1,9 @@
 import argparse
 from importlib.resources import files
 
-import msdis.control.acceptance as acc
-import msdis.control.approx as approx
-import msdis.control.interactive as inter
+import control.acceptance as acc
+import control.approx as approx
+import control.interactive as inter
 
 def main():
     args = argparse.ArgumentParser()
@@ -14,22 +14,18 @@ def main():
     args.add_argument('-i', dest='interactive', action='store_true')
     args = args.parse_args()
     
-    # Get the package root directory
-    package_root = files('msdis')
-    
     # Construct the path to the encoding files
     encoding_files = {
-        'aba': package_root / 'encoding' / 'aba.lp',
-        'af': package_root / 'encoding' / 'af.lp',
+        'aba': 'encoding/aba.lp',
+        'af': 'encoding/af.lp',
     }
-    encoding = str(encoding_files[args.framework])
 
     if args.interactive:
-        inter.run(args.problem, args.goal, encoding)
+        inter.run(args.problem, args.goal, encoding_files[args.framework])
     elif args.approx is not None:
-        approx.run(args.problem, args.goal, args.approx, encoding)
+        approx.run(args.problem, args.goal, args.approx, encoding_files[args.framework])
     else:
-        print(acc.run(args.problem, args.goal, encoding))
+        print(acc.run(args.problem, args.goal, encoding_files[args.framework]))
             
 if __name__ == '__main__':
     main()
