@@ -1,8 +1,8 @@
 import argparse
 
-import control.acceptance as acc
-import control.approx as approx
-import control.interactive as inter
+import msdis.control.acceptance as acc
+import msdis.control.approx as approx
+import msdis.control.interactive as inter
 
 
 FRAMEWORKS_DICT = {
@@ -10,7 +10,7 @@ FRAMEWORKS_DICT = {
     'af': 'encoding/af.lp',
 }
 
-if __name__ == '__main__':
+def main():
     args = argparse.ArgumentParser()
     args.add_argument('-p', dest='problem', type=str, required=True)
     args.add_argument('-f', dest='framework', type=str, required=True)
@@ -27,6 +27,9 @@ if __name__ == '__main__':
         approx.run(args.problem, args.goal, args.approx, encoding)
     else:
         print(acc.run(args.problem, args.goal, encoding))
+        
+if __name__ == '__main__':
+    main()
 
 
     
