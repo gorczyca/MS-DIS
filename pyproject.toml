@@ -17,9 +17,13 @@ license = {text = "MIT"}
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
-
 [tool.pdm]
 distribution = true
+
+[tool.pdm.package]
+include = [
+    { path = "src/msdis/encoding", format = "package" },
+]
 
 [project.scripts]
 msdis = "msdis.__main__:main"

@@ -1,4 +1,5 @@
 import argparse
+from importlib.resources import files
 
 import msdis.control.acceptance as acc
 import msdis.control.approx as approx
@@ -6,9 +7,10 @@ import msdis.control.interactive as inter
 
 
 FRAMEWORKS_DICT = {
-    'aba': 'encoding/aba.lp',
-    'af': 'encoding/af.lp',
+    'aba': files('msdis.encoding').joinpath('aba.lp'),
+    'af': files('msdis.encoding').joinpath('af.lp'),
 }
+
 
 def main():
     args = argparse.ArgumentParser()
@@ -19,7 +21,7 @@ def main():
     args.add_argument('-i', dest='interactive', action='store_true')
     args = args.parse_args()
 
-    encoding = FRAMEWORKS_DICT[args.framework]
+    encoding = str(FRAMEWORKS_DICT[args.framework])
 
     if args.interactive:
         inter.run(args.problem, args.goal, encoding)
