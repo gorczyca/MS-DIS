@@ -13,10 +13,10 @@ def run(instance, goal, encoding):
     p_win = Function('end', [Number(step), Function("p")])
     res = ctl.solve(assumptions=[(p_win, True)])
     if res.satisfiable:
-        return True
+        return 'YES'
     o_win = Function('end', [Number(step), Function("o")])
     res = ctl.solve(assumptions=[(o_win, False)])
     if res.unsatisfiable:
-        return False
+        return 'NO'
     step += 1
     ctl.ground([('step', [Number(step)])])
