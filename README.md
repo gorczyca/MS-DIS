@@ -32,9 +32,9 @@ for example:
 python msdis.py -f aba -p instances/aba-test-instance.lp-b "g(a4). tt(ta). at(dabf)." 
 ```
 
-For stable semantics, set `tt(ts). at(tc).` as below:
+For stable semantics, set `tt(ts). at(ts).` as below:
 ```
-python msdis.py -f aba -p instances/aba-test-instance.lp -b "g(a4). tt(tc). at(tc)." 
+python msdis.py -f aba -p instances/aba-test-instance.lp -b "g(a4). tt(ts). at(dc)." 
 ```
 
 ### AF:
