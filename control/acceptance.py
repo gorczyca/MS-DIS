@@ -1,11 +1,13 @@
 from clingo import Control, Number, Function
 
 
-def run(instance, goal, encoding):
+# def run(instance, goal, at, tt, encoding):
+def run(instance, base, encoding):
   ctl = Control(['--warn=none'])
   ctl.load(instance)
   ctl.load(encoding)
-  ctl.add('base', [], f'g({goal}).')
+  # ctl.add('base', [], f'g({goal}).')
+  ctl.add('base', [], base)
   ctl.ground([('base', ())])
   step = 0
   while True:
