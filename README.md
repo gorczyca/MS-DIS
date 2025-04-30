@@ -9,32 +9,36 @@
 ```
 
 ## Installation
+[clingo](https://potassco.org/clingo/python-api/5.4/) python module is required. It can be installed via conda:
+
 ```
 git clone https://github.com/gorczyca/MS-DIS
 cd MS-DIS
-pip install .
+conda env create -f environment.yml
+conda activate clingo-env
 ```
 
 
-### Verify installation
-#### ABA: 
+## Run
+### ABA:
+under admissible semantics, with instance `<INSTANCE>` and goal `<GOAL>`, run: 
 ```
-python msdis.py -p test-instances/aba-test-instance.lp -g q4 -f aba 
+python msdis.py -f aba -p <INSTANCE> -b "g(<GOAL>). tt(ta). at(dabf)." 
 ```
-should return `False`, whereas:
-```
-msdis -p test-instances/aba-test-instance.lp -g a4 -f aba 
-```
-should return `True`
 
-#### AF:
-```
-msdis -p test-instances/af-test-instance.lp -g 36 -f af 
+for example:
 
 ```
-returns `True` and:
+python msdis.py -f aba -p instances/aba-test-instance.lp-b "g(a4). tt(ta). at(dabf)." 
 ```
-msdis -p test-instances/af-test-instance.lp -g 2 -f af 
+
+For stable semantics, set `tt(ts). at(tc).` as below:
+```
+python msdis.py -f aba -p instances/aba-test-instance.lp -b "g(a4). tt(tc). at(tc)." 
+```
+
+### AF:
+```
+python msdis.py -f af -p test-instances/af-test-instance.lp -b "g(36)."
 
 ```
-returns `False`
