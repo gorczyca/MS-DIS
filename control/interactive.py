@@ -1,35 +1,45 @@
-#TODO:
-
 from clingo import Control, Number, Function
-import sys
 
 
-def on_model(model):
-    print("Answer:")
-    for atom in model.symbols(shown=True):
-        print(f"  {atom}")
-
-
-def run(instance, goal, encoding):
+def run(instance, base, encoding):
   ctl = Control(['--warn=none'])
   ctl.load(instance)
   ctl.load(encoding)
-  ctl.add('base', [], f'g({goal}).')
+  ctl.add('base', [], base)
   ctl.ground([('base', ())])
+  ctl.add('pmc', ['t', 'player', 'type', 'id'], 'm(t,player,type,id).')
+
   step = 0
+  moves = []
+
+  print(f'Setting: {base}')   
   while True:
+    print('Current dispute:\n'+'\n'.join(f"{i}. {e}" for i, e in enumerate(moves)))
+    
     ctl.ground([('updateState', [Number(step)])])
-    # ctl.solve(on_model=on_model)
     p_win = Function('end', [Number(step), Function("p")])
-    # res = ctl.solve(assumptions=[(p_win, True)], on_model=on_model)
     res = ctl.solve(assumptions=[(p_win, True)])
     if res.satisfiable:
-        return 'yes', step, None, None, None
+        print('YES')
+        return
     o_win = Function('end', [Number(step), Function("o")])
-    # res = ctl.solve(assumptions=[(o_win, False)], on_model=on_model)
     res = ctl.solve(assumptions=[(o_win, False)])
     if res.unsatisfiable:
-        return 'no', step, None, None, None
+        print('NO')
+        return
+        
     step += 1
-    ctl.ground([('step', [Number(step)])])
-
+    with ctl.solve(yield_=True) as handle:
+        for m in handle: 
+            pm_atoms = list(filter(lambda atom:
+                atom.name == 'pm' 
+                and len(atom.arguments) > 0
+                and atom.arguments[0] == Number(step-1), m.symbols(atoms=True)))
+            
+            print('Possible moves:\n'+'\n'.join(f"{i}. {str(e)}" for i, e in enumerate(pm_atoms)))
+            sel_move = pm_atoms[int(input(f"Select (0-{len(pm_atoms)-1}): "))]
+            move = Function('m', [Number(step), *sel_move.arguments[1:]])
+            moves = [*moves, str(move)]
+            
+    ctl.ground([('pmc', [Number(step), *move.arguments[1:]])])
+    
