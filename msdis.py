@@ -25,7 +25,8 @@ def main():
     if args.interactive:
         inter.run(args.problem, args.base, encoding_path)
     elif args.approx is not None:
-        approx.run(args.problem, args.base, args.approx, encoding_path)
+        horizon = int(args.approx)
+        approx.run(args.problem, args.base, horizon, encoding_path)
     else:
         print(acc.run(args.problem, args.base, encoding_path))
             
