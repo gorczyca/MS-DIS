@@ -55,3 +55,6 @@ end(t,o) :- not term(t), not pm(t,p,_,_). % opponent won; term. cond. not satisf
 #program step(t).
 m(t,P,T,X) :- pm(t-1,P,T,X), not branchMT(T), t > 0. % proceed with non-br. move type
 { m(t,P,T,X) : pm(t-1,P,T,X), branchMT(T) } = 1 :- t > 0, branchMT(T) : pm(t-1,_,T,_). % choose one br. move
+
+#program pmc(t,player,type,id).
+m(t,player,type,id).

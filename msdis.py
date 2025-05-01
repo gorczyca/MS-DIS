@@ -23,8 +23,7 @@ def main():
     encoding_path = os.path.join(__dir__, ENCODING_FILES[args.framework])
 
     if args.interactive:
-        interactive_path = os.path.join(__dir__, 'encoding/interactive.lp')
-        inter.run(args.problem, args.base, encoding_path, interactive_path)
+        inter.run(args.problem, args.base, encoding_path)
     elif args.approx is not None:
         approx.run(args.problem, args.base, args.approx, encoding_path)
     else:

@@ -7,7 +7,6 @@ def run(instance, base, encoding):
   ctl.load(encoding)
   ctl.add('base', [], base)
   ctl.ground([('base', ())])
-  ctl.add('pmc', ['t', 'player', 'type', 'id'], 'm(t,player,type,id).')
 
   step = 0
   moves = []
