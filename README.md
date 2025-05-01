@@ -29,16 +29,22 @@ python msdis.py -f aba -p <INSTANCE> -b "g(<GOAL>). tt(ta). at(dabf)."
 for example:
 
 ```
-python msdis.py -f aba -p instances/aba-test-instance.lp-b "g(a4). tt(ta). at(dabf)." 
+python msdis.py -f aba -p test-instances/aba-test-instance.lp -b "g(a4). tt(ta). at(dabf)." 
 ```
 
 For stable semantics, set `tt(ts). at(ts).` as below:
 ```
-python msdis.py -f aba -p instances/aba-test-instance.lp -b "g(a4). tt(ts). at(dc)." 
+python msdis.py -f aba -p test-instances/aba-test-instance.lp -b "g(a4). tt(ts). at(dc)." 
 ```
 
 ### AF:
 ```
 python msdis.py -f af -p test-instances/af-test-instance.lp -b "g(36)."
 
+```
+
+## Interactive mode:
+Provide the `-i` flag, e.g.:
+```
+python msdis.py -f aba -p test-instances/aba-test-instance.lp -i -b "g(a4). tt(ta). at(dabf)." 
 ```
