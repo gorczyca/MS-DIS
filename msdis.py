@@ -26,7 +26,7 @@ def main():
         inter.run(args.problem, args.base, encoding_path)
     elif args.approx is not None:
         horizon = int(args.approx)
-        approx.run(args.problem, args.base, horizon, encoding_path)
+        print(approx.run(args.problem, args.base, horizon, encoding_path))
     else:
         print(acc.run(args.problem, args.base, encoding_path))
             
