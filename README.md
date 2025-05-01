@@ -48,3 +48,9 @@ Provide the `-i` flag, e.g.:
 ```
 python msdis.py -f aba -p test-instances/aba-test-instance.lp -i -b "g(a4). tt(ta). at(dabf)." 
 ```
+
+## Approximate reasoning
+Provide the horizon (upper bound on the number of moves) with `-x <HORIZON>` e.g. 
+```
+python msdis.py -f aba -p test-instances/aba-test-instance.lp -b "g(a4). tt(ta). at(dabf)." -x 15
+```
