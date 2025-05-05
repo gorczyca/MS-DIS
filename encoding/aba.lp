@@ -59,3 +59,5 @@ m(t,P,T,X) :- pm(t-1,P,T,X), not branchMT(T), t > 0. % proceed with non-br. move
 
 #program pmc(t,player,type,id).
 m(t,player,type,id).
+
+#show m/4.
