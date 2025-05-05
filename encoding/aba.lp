@@ -5,8 +5,8 @@ rMT(pb1;pb2;pf1;ob1;ob2;of1). % rule move types
 branchMT(pb1;pb2;pf2). % branching (br.) move types
 plr(p;o). % players; proponent (p) and opponent (o)
 rS(R,S) :- head(R,S). % rule's statements
-rS(R,S) :- body(R, S). % rule's statements
-stS(0,S,p) :- g(S), not contrary(S, S). % proponent's initial statement 
+rS(R,S) :- body(R,S). % rule's statements
+stS(0,S,P) :- g(S), not contrary(S,S), plr(P). % goal --  initial statement 
 remBloR(0,R,H,p) :- head(R,H), rS(R,S1), rS(R,S2), contrary(S1,S2). % blocked, inconsistent rules
 #program updateState(t).
 stS(t,S,P) :- stS(_,S,p), plr(P). % allow the opponent to access proponent statements
@@ -47,14 +47,15 @@ stS(t,S,o) :- m(_,o,T,R), rMT(T), rS(R,S).
 stS(t,A,o) :- m(_,o,T,A), not rMT(T).
 stR(t,R,H,P) :- m(_,p,T,R), head(R,H), rMT(T), plr(P). % new state rule
 stR(t,R,H,o) :- m(_,o,T,R), head(R,H), rMT(T). 
-term(t) :- tt(ta), g(G), comS(t,G,p), comS(t,CC,p) : culCtr(t,CC); not unbloComS(t,DC,o) : defCtr(t,DC). % termination condition
+term(t) :- tt(ta), g(G), comS(_,G,p), comS(_,CC,p) : culCtr(_,CC); not unbloComS(t,DC,o) : defCtr(_,DC). % termination condition
 remA(t,A) :- tt(ts), assumption(A), not def(_,A), not cul(_,A).
-term(t) :- tt(ts), g(G), comS(t,G,p), comS(t,CC,p) : culCtr(t,CC); not unbloComS(t,DC,o) : defCtr(t,DC); not remA(t,A) : assumption(A). % termination condition
+term(t) :- tt(ts), g(G), comS(_,G,p), comS(_,CC,p) : culCtr(_,CC); not unbloComS(t,DC,o) : defCtr(_,DC); not remA(t,A) : assumption(A). % termination condition
 end(t,p) :- term(t), not pm(t,o,_,_). % proponent won; termination condition satisfied and opponent cannot move
 end(t,o) :- not term(t), not pm(t,p,_,_). % opponent won; term. cond. not satisfied and proponent cannot move
+
 #program step(t).
 m(t,P,T,X) :- pm(t-1,P,T,X), not branchMT(T), t > 0. % proceed with non-br. move type
-{ m(t,P,T,X) : pm(t-1,P,T,X), branchMT(T) } = 1 :- t > 0, branchMT(T) : pm(t-1,_,T,_). % choose one br. move
+{ m(t,P,T,X) : pm(t-1,P,T,X) } = 1 :- t > 0, branchMT(T) : pm(t-1,_,T,_). % choose one br. move
 
 #program pmc(t,player,type,id).
 m(t,player,type,id).

@@ -13,7 +13,7 @@ def run(instance, base, encoding):
   while True:
     ctl.ground([('updateState', [Number(step)])])
     p_win = Function('end', [Number(step), Function("p")])
-    res = ctl.solve(assumptions=[(p_win, True)])
+    res = ctl.solve(assumptions=[(p_win, True)], on_model=print)
     if res.satisfiable:
         return 'YES'
     o_win = Function('end', [Number(step), Function("o")])
