@@ -12,8 +12,6 @@
 [clingo](https://potassco.org/clingo/python-api/5.4/) python module is required. It can be installed via conda:
 
 ```
-git clone https://github.com/gorczyca/MS-DIS
-cd MS-DIS
 conda env create -f environment.yml
 conda activate clingo-env
 ```
@@ -47,6 +45,11 @@ python msdis.py -f af -p test-instances/af-test-instance.lp -b "g(36)."
 Provide the `-i` flag, e.g.:
 ```
 python msdis.py -f aba -p test-instances/aba-test-instance.lp -i -b "g(a4). tt(ta). at(dabf)." 
+```
+
+Provide the `-i` flag, e.g.:
+```
+python msdis.py -f aba -p test-instances/paper-running-example-aba.lp -i -b "g(s). tt(ta). at(dabf)." 
 ```
 
 ## Approximate reasoning

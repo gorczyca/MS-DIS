@@ -16,6 +16,9 @@ body(2,a).
 head(3,r).
 body(3,b).
 
+head(7,r).
+body(7,c).
+
 % b̄←q,t
 head(4,xb).
 body(4,q).

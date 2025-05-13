@@ -14,7 +14,7 @@ def run(instance, base, encoding):
   print(f'Setting: {base}')   
   while True:
     print('Current dispute:\n'+'\n'.join(f"{i}. {e}" for i, e in enumerate(moves)))
-    ctl.ground([('updateState', [N(step)])])    
+    ctl.ground([('updateState', [N(step)])])        
     p_win = F('end', [N(step), F("p")])
     res = ctl.solve(assumptions=[(p_win, True)])
     if res.satisfiable:
