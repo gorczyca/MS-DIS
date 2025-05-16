@@ -1,5 +1,16 @@
 assumption(a;b;c;d).
 
+% 1 a
+% 2 b
+% 3 c
+% 4 d
+% 5 xb
+% 6 xc
+% 7 s
+% 8 q
+% 9 r
+% 10 t
+
 contrary(b,xb).
 contrary(c,xc).
 
