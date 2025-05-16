@@ -92,7 +92,7 @@ def main():
     if args.chosen_problem == 'DC-CO':
         base = f'g({args.query}). at(dabf). tt(ta).'
     elif args.chosen_problem == 'DC-ST':
-        base = f'g({args.query}). at(dabf). tt(ta).'
+        base = f'g({args.query}). at(ds). tt(ts).'
     else:
         print('Wrong problem specified')
         return
