@@ -38,10 +38,10 @@ prints:
 
 Finally:
 ```
-msdis -p DC-ST -f test-instances/example-aba.iccma -a 7
+user$ msdis -p DC-ST -f test-instances/example-aba.iccma -a 7
 ```
 returns `YES`, while:
 ```
-msdis -p DC-ST -f test-instances/example-aba.iccma -a 5
+user$ msdis -p DC-ST -f test-instances/example-aba.iccma -a 5
 ```
 returns `NO`.
