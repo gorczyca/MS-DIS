@@ -1,7 +1,10 @@
 % axiom(a).
 % premise(a).
 % contrary(a,x). % asymmetric
-% contradictory(x,nx). % symmetric 
+% contradictory(x,nx). % symmetric -- do we need that? looks like this is something inherent to aspforaspic
+% we can circumvent that by addint the following to the base:
+% contrary(x,nx) :- contradictory(x,nx).
+% contrary(nx,x) :- contradictory(x,nx).
 % head(i,x). 
 % body(i,x).
 % strict_head(i,x).
@@ -9,33 +12,32 @@
 
 % we could say label(i,x). rather than rely on i to be the label
 
-%  with preferences
-% preferred(a,b).
-
 #program base.
-%  any rule
-rH(R,H) :- head(R,H).
+%  any rule head
+rH(R,H) :- head(R,H). 
 rH(R,H) :- strict_head(R,H). 
+% any rule body
 rB(R,B) :- body(R,B).
 rB(R,B) :- strict_body(R,B).
-
-
-rS(R,S) :- rH(R,S). % any rule's statements
+% any rule's statements
+rS(R,S) :- rH(R,S). 
 rS(R,S) :- rB(R,S). 
-
+% players
+plr(p;o).
+% pure premise
 purePremise(P) :- premise(P), not strict_head(_,P).
-
 % knowledge base
 kb(P) :- premise(P).
 kb(A) :- axiom(A).
 
+
 #program updateState(t).
 
-stS(t,S,Pl). % state statement
+% stS(t,S,Pl). % state statement
 
-stSR(t,R,H,Pl). % strict rule 
-stDR(t,R,H,Pl). % defeasible rule 
-stR(t,R,H,Pl).
+% stSR(t,R,H,Pl). % strict rule 
+% stDR(t,R,H,Pl). % defeasible rule 
+% stR(t,R,H,Pl). % state rule
 
 stPurePremise(t,P,p) :- stS(_,P,p), premise(P), not stSR(_,_,P,p). % pure premise relative to P - possible that it is not pure actually?
 rejS(t,S,p) :- stS(_,C,p), contrary(S,C). % rejected statements
@@ -82,8 +84,11 @@ unbloSupSS(t,S,o) :- stS(_,S,o), not stAttS(_,S,o), unbloSupSR(_,R,_,o), rB(R,S)
 unbloSupSR(t,R,H,o) :- stR(_,R,H,o), not stAttR(_,R,H,o), unbloSupSS(_,H,o).
 
 % candidates to attack
-candAttP(t,P,p) :- premise(P), unbloSupSS(_,P,o).
-candAttDR(t,R,H,p) :- head(R,H), unbloSupSR(_,R,H,o).
+candAttP(t,P,p) :- premise(P), unbloSupSS(t,P,o).
+candAttDR(t,R,H,p) :- head(R,H), unbloSupSR(t,R,H,o). % this can be simpliefied, and I can always just collect statements to be attacked - be that rule or a premise
+% TODO:
+candAtt(t,P,p) :- premise(P), unbloSupSS(t,P,o).
+candAtt(t,R,p) :- head(R,H), unbloSupSR(t,R,H,o).
 
 % premises defended by p
 defP(t,P,p) :- premise(P), not rejPremise(_,P,p),  not stUnaFinS(_,C,o) : contrary(P, C).
@@ -91,6 +96,20 @@ defP(t,P,p) :- premise(P), not rejPremise(_,P,p),  not stUnaFinS(_,C,o) : contra
 % def. rules defended by P
 defDR(t,R,H,p) :- head(R,H), not rejRule(_,R,H,p), not stUnaFinS(_,C,o) : contrary(R,C).
 
-%  question: rule labels also proponent statements? 
-%  question: aspforaspic allows for (undercut?) attacking rules by their labels?
-% can rules / statements have more than one contrary? I guess so.
+% possible moves
+% definition could be really simplieified, in all PB moves, the second argument is always R_d - I suggest to just add it to the definition rather than have it as parameter, for less confusion.
+
+remR(t,R,H,p) :- rH(R,H), not stBloR(t,R,H,p), not stR(t,R,H,p).
+pm(t,p,pb1,R) :- remR(t,R,H,p), stS(_,H,p). % possible move "PB1"
+pm(t,p,pb2,R) :- remR(t,R,H,p), not stS(_,H,p), contrary(S,H), candAtt(t,S,p). % possible move "PB2"
+%  a big simplification would be to just name the moves, and then if rule move - add head and body, if statement - add statement. No matter if head already exists, P/B are sets and can be added again instead of defining T= {h} u {B -> h} or just T={B->h}.
+pm(t,p,pf1,R) :- remR(t,R,H,p), not stPurePremise(_,H,p), stFinS(_,B,p) : rB(R,B). % possible move "PF1"
+
+pm(t,p,pf2,C) :- candAtt(t,S,p), contrary(S,C), not stS(_,C,p), not contrary(C,C), not rejS(_,C,p), not contrary(R,C) : stSR(_,R,_,p) ; not contrary(S1,C) : stS(_,S1,p).
+% 
+pm(t,o,ob1,R) :- rH(R,H), not stR(_,R,H,_), unbloSupSS(t,H,o).
+pm(t,o,ob2,R) :- rH(R,H), not stR(_,R,H,_), stSet(t,H,o).
+pm(t,o,of1,R) :- rH(R,H), not stR(_,R,H,_), stUnaFinS(t,B,o) : rB(R,B).
+pm(t,o,of2,S) :- stSet(_,S,o), kb(S), not stR(_,S,_).
+% the condition that all body atoms must be included is sometimes enforced by P* \supseteq B and sometimes b\in P* for every b\in B. Would be good to unify it.
+
