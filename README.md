@@ -41,6 +41,12 @@ python msdis.py -f af -p test-instances/af-test-instance.lp -b "g(36)."
 
 ```
 
+### ASPIC:
+```
+python msdis.py -f aspic -p test-instances/aspic-test-instance.lp -b "g(t)."
+```
+
+
 ## Interactive mode:
 Provide the `-i` flag, e.g.:
 ```
