@@ -13,8 +13,15 @@ def run(instance, base, encoding):
 
   print(f'Setting: {base}')   
   while True:
+    
+      
     print('Current dispute:\n'+'\n'.join(f"{i}. {e}" for i, e in enumerate(moves)))
     ctl.ground([('updateState', [N(step)])])        
+    
+    print('DEBUG')
+    ctl.solve(on_model=print)
+
+    
     p_win = F('end', [N(step), F("p")])
     res = ctl.solve(assumptions=[(p_win, True)])
     if res.satisfiable:
@@ -41,4 +48,6 @@ def run(instance, base, encoding):
             moves = [*moves, str(move)]
             
     ctl.ground([('pmc', [N(step), *move.arguments[1:]])])
+
+
     

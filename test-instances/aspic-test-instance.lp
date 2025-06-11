@@ -10,6 +10,8 @@
 % strict_head(i,x).
 % strict_body(i,x).
 
+% goal: t 
+
 axiom(h).
 premise(b;c;d;e;f).
 strict_head(sr1,z).

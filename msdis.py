@@ -7,6 +7,7 @@ import control.interactive as inter
 ENCODING_FILES = {
     'aba': 'encoding/aba.lp',
     'af': 'encoding/af.lp',
+    'aspic': 'encoding/aspic.lp',
 }
 
 
