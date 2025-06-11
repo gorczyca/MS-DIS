@@ -18,8 +18,9 @@ def run(instance, base, encoding):
     print('Current dispute:\n'+'\n'.join(f"{i}. {e}" for i, e in enumerate(moves)))
     ctl.ground([('updateState', [N(step)])])        
     
-    print('DEBUG')
-    ctl.solve(on_model=print)
+    # uncomment, for debug mode. Add relevant predicates with their #show directive to the respective encoding file
+    # print('DEBUG')
+    # ctl.solve(on_model=print)
 
     
     p_win = F('end', [N(step), F("p")])
