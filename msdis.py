@@ -18,13 +18,14 @@ def main():
     args.add_argument('-b', dest='base', type=str, required=True)
     args.add_argument('-x', dest='approx', type=int)
     args.add_argument('-i', dest='interactive', action='store_true')
+    args.add_argument('-d', dest='debug', action='store_true')
     args = args.parse_args()
     
     __dir__ = os.path.dirname(os.path.abspath(__file__))
     encoding_path = os.path.join(__dir__, ENCODING_FILES[args.framework])
 
     if args.interactive:
-        inter.run(args.problem, args.base, encoding_path)
+        inter.run(args.problem, args.base, encoding_path, debug=args.debug)
     elif args.approx is not None:
         horizon = int(args.approx)
         print(approx.run(args.problem, args.base, horizon, encoding_path))

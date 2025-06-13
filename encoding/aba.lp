@@ -59,3 +59,8 @@ m(t,P,T,X) :- pm(t-1,P,T,X), not branchMT(T), t > 0. % proceed with non-br. move
 m(t,player,type,id).
 
 #show m/4.
+
+% add here relevant predicates to observe in the interactive mode, when the -d (debug) flat is supplied
+% #show unbloComR/4.
+% #show stS/3.
+% #show stR/4.

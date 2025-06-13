@@ -1,7 +1,7 @@
 from clingo import Control, Number as N, Function as F
 
 
-def run(instance, base, encoding):
+def run(instance, base, encoding, debug=False):
   ctl = Control(['--warn=none'])
   ctl.load(instance)
   ctl.load(encoding)
@@ -18,9 +18,15 @@ def run(instance, base, encoding):
     print('Current dispute:\n'+'\n'.join(f"{i}. {e}" for i, e in enumerate(moves)))
     ctl.ground([('updateState', [N(step)])])        
     
-    # uncomment, for debug mode. Add relevant predicates with their #show directive to the respective encoding file
-    # print('DEBUG')
-    # ctl.solve(on_model=print)
+    if debug: # debug mode
+        with ctl.solve(yield_=True) as handle:
+            for m in handle: 
+                pm_atoms = list(filter(lambda atom:
+                    len(atom.arguments) > 0 and atom.arguments[0] == N(step), m.symbols(shown=True)))
+
+
+                print('DEBUG:\n' + ' '.join([str(a) for a in pm_atoms]))
+                pass
 
     
     p_win = F('end', [N(step), F("p")])

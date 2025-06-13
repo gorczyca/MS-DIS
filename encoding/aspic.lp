@@ -143,7 +143,6 @@ m(t,P,T,X) :- pm(t-1,P,T,X), not branchMT(T), t > 0. % proceed with non-br. move
 m(t,player,type,id).
 
 #show m/4.
-% ADD SHOW DIRECTIVES HERE
 
 % also: for simplification -- can't we just check if there is NO OTHER MOVE possible for the opposite player, rather than checking specific? 
 % in the PW condition, why not do \bar{K^{o-}_p} \cap P^* = \emptyset, rather than use quantifier?
@@ -151,3 +150,10 @@ m(t,player,type,id).
 % in the example, 
 %   at 1-2 using sd3 can be both ob1 and ob2
 % 
+
+% ADD HERE:
+% add here relevant predicates to observe in the interactive mode, when the -d (debug) flat is supplied
+% #show auxBloP/3.
+% #show stS/3.
+% #show stR/4.
+
