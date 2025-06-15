@@ -1,7 +1,12 @@
 from clingo import Control, Number as N, Function as F
 from control.vis import visualize
+import os, shutil
 
 def run(instance, base, encoding, vis_encoding=None, debug=False):
+    
+  if os.path.exists("out"):
+    shutil.rmtree("out")
+    
   ctl = Control(['--warn=none'])
   ctl.load(instance)
   ctl.load(encoding)

@@ -18,6 +18,13 @@ from PIL import Image, ImageTk
 import tkinter as tk
 from PIL import Image, ImageTk
 
+import subprocess
+import os
+import time
+import platform
+
+
+
 def show_image(image_path, window_title="MyWindow", height=1000, width=600):
     root = tk._default_root
     if not root:
@@ -66,7 +73,7 @@ def visualize(model, vis_encoding):
             fb.add_model(m)
             graphs = graphviz.compute_graphs(fb)
             graphviz.render(graphs, format="png") # todo: set filename
-            show_image("out/main.png")
+            show_image("out/" + sorted(os.listdir("out"))[-1])
  
             
             
