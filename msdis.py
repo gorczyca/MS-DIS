@@ -5,9 +5,9 @@ import control.approx as approx
 import control.interactive as inter
 
 ENCODING_FILES = {
-    'aba': 'encoding/aba.lp',
-    'af': 'encoding/af.lp',
-    'aspic': 'encoding/aspic.lp',
+    'aba': 'encoding/aba/aba.lp',
+    'af': 'encoding/af/af.lp',
+    'aspic': 'encoding/aspic/aspic.lp',
 }
 
 
@@ -17,6 +17,7 @@ def main():
     args.add_argument('-f', dest='framework', type=str, required=True)
     args.add_argument('-b', dest='base', type=str, required=True)
     args.add_argument('-x', dest='approx', type=int)
+    args.add_argument('-v', dest='vis_encoding', type=str)
     args.add_argument('-i', dest='interactive', action='store_true')
     args.add_argument('-d', dest='debug', action='store_true')
     args = args.parse_args()
@@ -25,7 +26,7 @@ def main():
     encoding_path = os.path.join(__dir__, ENCODING_FILES[args.framework])
 
     if args.interactive:
-        inter.run(args.problem, args.base, encoding_path, debug=args.debug)
+        inter.run(args.problem, args.base, encoding_path, vis_encoding=args.vis_encoding, debug=args.debug)
     elif args.approx is not None:
         horizon = int(args.approx)
         print(approx.run(args.problem, args.base, horizon, encoding_path))

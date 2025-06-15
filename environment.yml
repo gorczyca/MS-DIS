@@ -4,3 +4,6 @@ channels:
   - conda-forge
 dependencies:
   - clingo
+
+
+# clingraph and dot dependencies
