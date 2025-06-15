@@ -64,4 +64,6 @@ Provide the horizon (upper bound on the number of moves) with `-x <HORIZON>` e.g
 python msdis.py -f aba -p test-instances/aba-test-instance.lp -b "g(a4). tt(ta). at(dabf)." -x 15
 ```
 
-![AF animation](img/movie.gif)
+<!-- ![AF animation](img/movie.gif) -->
+
+<img src="img/movie.gif" alt="Figure 1" height="1500" />
