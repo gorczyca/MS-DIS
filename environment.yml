@@ -1,9 +1,11 @@
 # conda env create -f environment.yml
-name: clingo-env
+name: clin-test
 channels:
   - conda-forge
+  - potassco
 dependencies:
   - clingo
+  - clingraph
 
 
 # clingraph and dot dependencies
