@@ -71,7 +71,7 @@ def visualize(model, vis_encoding):
     with ctl.solve(yield_=True) as handle:
         for m in handle: # the only model
             fb.add_model(m)
-            graphs = graphviz.compute_graphs(fb)
+            graphs = graphviz.compute_graphs(fb, graphviz_type='digraph')
             graphviz.render(graphs, format="png") # todo: set filename
             show_image("out/" + sorted(os.listdir("out"))[-1])
  
