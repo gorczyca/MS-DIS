@@ -4,24 +4,8 @@ from clingo import Control
 import tkinter as tk
 from PIL import Image, ImageTk
 
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-from PIL import Image
-# from IPython.display import display, Image
-
-import matplotlib.pyplot as plt
-
-
-import tkinter as tk
-from PIL import Image, ImageTk
-
-import tkinter as tk
-from PIL import Image, ImageTk
-
-import subprocess
 import os
-import time
-import platform
+
 
 
 

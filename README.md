@@ -64,6 +64,32 @@ Provide the horizon (upper bound on the number of moves) with `-x <HORIZON>` e.g
 python msdis.py -f aba -p test-instances/aba-test-instance.lp -b "g(a4). tt(ta). at(dabf)." -x 15
 ```
 
+## Visualisation
+
+Provide a visualisation clingraph encoding with a `-v <ENCODING>` parameter, e.g.:
+
 <!-- ![AF animation](img/movie.gif) -->
 
-<img src="img/movie.gif" alt="Figure 1" height="1500" />
+<!-- ### AF encoding 1  
+`python msdis.py -f af -p test-instances/af-ex2.lp -i -b "g(a10)." -v encoding/af/af-vis1.lp`  
+<img src="img/af-vis1.png" alt="Figure 1" height="500" />
+
+### AF encoding 2
+`python msdis.py -f af -p test-instances/af-ex2.lp -i -b "g(a10)." -v encoding/af/af-vis2.lp`  
+<img src="img/af-vis2.gif" alt="Figure 1" height="1500" />
+
+### ABA
+`python msdis.py -f aba -p test-instances/paper-running-example-aba.lp -b "g(s)." -i -v encoding/aba/aba-vis.lp`  
+<img src="img/aba-vis.png" alt="Figure 1" height="750" />
+
+### ASPIC
+`python msdis.py -f aspic -p test-instances/aspic-test-instance.lp -i -b "g(t)." -v encoding/aspic/aspic-vis.lp`
+<img src="img/aspic-vis.png" alt="Figure 1" height="750" /> -->
+
+
+| Encoding     | Command example                                                                                      | Screenshot                       |
+|--------------|----------------------------------------------------------------------------------------------------|--------------------------------|
+| AF encoding 1| `python msdis.py -f af -p test-instances/af-ex2.lp -i -b "g(a10)." -v encoding/af/af-vis1.lp`       | ![AF encoding 1](img/af-vis1.png)  |
+| AF encoding 2| `python msdis.py -f af -p test-instances/af-ex2.lp -i -b "g(a10)." -v encoding/af/af-vis2.lp`       | ![AF encoding 2](img/af-vis2.gif)  |
+| ABA          | `python msdis.py -f aba -p test-instances/paper-running-example-aba.lp -b "g(s)." -i -v encoding/aba/aba-vis.lp` | ![ABA](img/aba-vis.png)           |
+| ASPIC+       | `python msdis.py -f aspic -p test-instances/aspic-test-instance.lp -i -b "g(t)." -v encoding/aspic/aspic-vis.lp` | ![ASPIC](img/aspic-vis.png)        |

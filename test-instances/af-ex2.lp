@@ -1,11 +1,3 @@
-arg(a1).
-arg(a2).
-arg(a3).
-arg(a4).
-arg(a5).
-arg(a6).
-arg(a7).
-arg(a8).
 arg(a9).
 arg(a10).
 arg(a11).
@@ -19,15 +11,7 @@ arg(a18).
 arg(a19).
 arg(a20).
 
-att(a1,a2).
-att(a2,a1).
-att(a2,a3).
-att(a3,a4).
-att(a4,a5).
-att(a5,a6).
-att(a6,a7).
-att(a7,a8).
-att(a8,a9).
+
 att(a9,a10).
 att(a10,a11).
 att(a11,a12).
@@ -39,22 +23,15 @@ att(a16,a17).
 att(a17,a18).
 att(a18,a19).
 att(a19,a20).
-att(a20,a1).
 
-att(a3,a1).
-att(a5,a2).
-att(a8,a6).
-att(a10,a7).
+
 att(a12,a9).
 att(a14,a11).
 att(a16,a13).
 att(a18,a15).
 att(a20,a17).
 
-att(a4,a2).
-att(a6,a4).
-att(a9,a7).
-att(a11,a8).
+
 att(a13,a10).
 att(a15,a12).
 att(a17,a14).

@@ -1,11 +1,15 @@
 # conda env create -f environment.yml
-name: clin-test
+name: potassco_env
 channels:
   - conda-forge
   - potassco
+  - anaconda
 dependencies:
   - clingo
   - clingraph
+  - graphviz
+  - pillow
 
 
-# clingraph and dot dependencies
+
+# clingraph and dot dependencies graphviz
