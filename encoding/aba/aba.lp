@@ -61,6 +61,24 @@ m(t,player,type,id).
 #show m/4.
 
 % add here relevant predicates to observe in the interactive mode, when the -d (debug) flat is supplied
-% #show unbloComR/4.
-% #show stS/3.
-% #show stR/4.
+#show rS/2.
+#show stS/3.
+#show stR/4.
+#show remBloR/4.
+#show def/2.
+#show cul/2.
+#show remR/4.
+#show remBloR/4.
+#show unexpS/3.
+#show stExpS/3.
+#show stBloS/3.
+#show stBloR/4.
+#show comS/3.
+#show unbloComS/3.
+#show unbloComR/4.
+#show unbloSupSS/3.
+#show unbloSupSR/4.
+#show culCan/2.
+#show pm/4.
+#show term/1.
+#show end/2.
