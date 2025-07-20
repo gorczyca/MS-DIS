@@ -83,7 +83,8 @@ attr(graph_nodes, main, style, filled).
 %% Rules
 graph(R,main) :- head(R,_).
 
-% put them in additional boxes
+% put them in additional boxes for annotation 
+
 
 node((R,H),R) :- head(R,H). % create node for head
 node((R,B),R) :- body(R,B). % node for each body
