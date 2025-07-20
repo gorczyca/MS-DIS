@@ -13,7 +13,6 @@ gameOverColor(p,"#ccffcc").
 gameOverColor(o,"#ffcccc").
 
 % initiate
-
 graph(T) :- m(T,_,_).
 node((A,T),T) :- arg(A), m(T,_,_).
 edge(((A,T),(B,T)),T) :- att(A,B), m(T,_,_).
