@@ -41,12 +41,6 @@ python msdis.py -f af -p test-instances/af-test-instance.lp -b "g(36)."
 
 ```
 
-### ASPIC:
-```
-python msdis.py -f aspic -p test-instances/aspic-test-instance.lp -b "g(t)."
-```
-
-
 ## Interactive mode:
 Provide the `-i` flag, e.g.:
 ```
@@ -67,24 +61,6 @@ python msdis.py -f aba -p test-instances/aba-test-instance.lp -b "g(a4). tt(ta).
 
 Provide a visualisation clingraph encoding with a `-v <ENCODING>` parameter, e.g.:
 
-<!-- ![AF animation](img/movie.gif) -->
-
-<!-- ### AF encoding 1  
-`python msdis.py -f af -p test-instances/af-ex2.lp -i -b "g(a10)." -v encoding/af/af-vis1.lp`  
-<img src="img/af-vis1.png" alt="Figure 1" height="500" />
-
-### AF encoding 2
-`python msdis.py -f af -p test-instances/af-ex2.lp -i -b "g(a10)." -v encoding/af/af-vis2.lp`  
-<img src="img/af-vis2.gif" alt="Figure 1" height="1500" />
-
-### ABA
-`python msdis.py -f aba -p test-instances/paper-running-example-aba.lp -b "g(s)." -i -v encoding/aba/aba-vis.lp`  
-<img src="img/aba-vis.png" alt="Figure 1" height="750" />
-
-### ASPIC
-`python msdis.py -f aspic -p test-instances/aspic-test-instance.lp -i -b "g(t)." -v encoding/aspic/aspic-vis.lp`
-<img src="img/aspic-vis.png" alt="Figure 1" height="750" /> -->
-
 
 | Encoding     | Command example                                                                                      | Screenshot                       |
 |--------------|----------------------------------------------------------------------------------------------------|--------------------------------|
@@ -95,8 +71,5 @@ Provide a visualisation clingraph encoding with a `-v <ENCODING>` parameter, e.g
 | AF encoding 4 raw| `python msdis.py -f af -p test-instances/af-ex2.lp -i -b "g(a10)." -v encoding/af/af-vis4.lp`       | ![AF encoding 4 raw](img/af-vis4.png)  |
 | ABA          | `python msdis.py -f aba -p test-instances/paper-running-example-aba.lp -b "g(s). at(dabf). tt(ta)." -i -v encoding/aba/aba-vis.lp` | ![ABA 1](img/aba-vis.png)           |
 | ABA 2         | `python msdis.py -f aba -p test-instances/paper-running-example-aba.lp -b "g(s). at(dabf). tt(ta)." -i -v encoding/aba/aba-vis2.lp` | ![ABA 2](img/aba-vis2.png)           |
-| ASPIC+       | `python msdis.py -f aspic -p test-instances/aspic-test-instance.lp -i -b "g(t)." -v encoding/aspic/aspic-vis.lp` | ![ASPIC](img/aspic-vis.png)        |
-
-
 
 <!-- `clingo encoding/aba/full_leq0.lp encoding/aba/aba-paper-test-file2.lp encoding/aba/aba-vis2.lp -n0 --outf=2  | clingraph --out=render --format=pdf --type=digraph` -->
