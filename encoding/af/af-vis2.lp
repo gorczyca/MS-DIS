@@ -6,6 +6,8 @@
 % m(2,p,b).
 % end(2,p).
 
+
+
 nodeColor(p,"green:white").
 nodeColor(o,"yellow:white").
 
@@ -16,6 +18,9 @@ gameOverColor(o,"#ffcccc").
 graph(T) :- m(T,_,_).
 node((A,T),T) :- arg(A), m(T,_,_).
 edge(((A,T),(B,T)),T) :- att(A,B), m(T,_,_).
+
+attr(graph,T,rankdir,"LR") :- graph(T). % arrows point up
+
 
 attr(graph_nodes, G, shape, circle) :- graph(G).
 attr(graph_nodes, G, style, filled) :- graph(G).
@@ -29,8 +34,6 @@ plrLabel(p,"P").
 plrLabel(o,"O").
 attr(graph,G,(label,2),L) :-  m(G,P,_), plrLabel(P,L).
 attr(graph,G,bgcolor,C) :- end(G,P), gameOverColor(P,C).
-
-
 
 attr(node, (A,T1), fillcolor, C) :-m(T1,_,_), T1 >= T, m(T,P,A), nodeColor(P, C).
 % blocked pieces

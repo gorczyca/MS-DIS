@@ -91,5 +91,10 @@ Provide a visualisation clingraph encoding with a `-v <ENCODING>` parameter, e.g
 |--------------|----------------------------------------------------------------------------------------------------|--------------------------------|
 | AF encoding 1| `python msdis.py -f af -p test-instances/af-ex2.lp -i -b "g(a10)." -v encoding/af/af-vis1.lp`       | ![AF encoding 1](img/af-vis1.png)  |
 | AF encoding 2| `python msdis.py -f af -p test-instances/af-ex2.lp -i -b "g(a10)." -v encoding/af/af-vis2.lp`       | ![AF encoding 2](img/af-vis2.gif)  |
-| ABA          | `python msdis.py -f aba -p test-instances/paper-running-example-aba.lp -b "g(s)." -i -v encoding/aba/aba-vis.lp` | ![ABA](img/aba-vis.png)           |
+| ABA          | `python msdis.py -f aba -p test-instances/paper-running-example-aba.lp -b "g(s). at(dabf). tt(ta)." -i -v encoding/aba/aba-vis.lp` | ![ABA](img/aba-vis.png)           |
+| ABA 2         | `python msdis.py -f aba -p test-instances/paper-running-example-aba.lp -b "g(s). at(dabf). tt(ta)." -i -v encoding/aba/aba-vis2.lp` | ![ABA](img/aba-vis.png)           |
 | ASPIC+       | `python msdis.py -f aspic -p test-instances/aspic-test-instance.lp -i -b "g(t)." -v encoding/aspic/aspic-vis.lp` | ![ASPIC](img/aspic-vis.png)        |
+
+
+
+`clingo encoding/aba/full_leq0.lp encoding/aba/aba-paper-test-file2.lp encoding/aba/aba-vis2.lp -n0 --outf=2  | clingraph --out=render --format=pdf --type=digraph`
