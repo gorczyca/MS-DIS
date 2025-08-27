@@ -58,6 +58,9 @@ def convert_framework(file_path):
     for ctr in contraries:
         framework_str += f'contrary({ctr[0]}, {ctr[1]}). '
         
+    with open('converted.lp', 'w') as c:
+        c.write(framework_str)
+
     return framework_str
 
 
