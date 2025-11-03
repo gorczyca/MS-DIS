@@ -13,7 +13,7 @@
 
 ```
 conda env create -f environment.yml
-conda activate clingo-env
+conda activate potassco_env
 ```
 
 
